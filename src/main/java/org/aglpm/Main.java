@@ -1,8 +1,0 @@
-package org.aglpm;
-
-public final class Main {
-
-    public static void main(String[] args) {
-        System.out.println("This is AGLPM");
-    }
-}
