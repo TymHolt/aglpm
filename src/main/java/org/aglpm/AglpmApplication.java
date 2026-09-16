@@ -2,6 +2,7 @@ package org.aglpm;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
@@ -10,6 +11,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * The main entry point of this application.
+ */
 public final class AglpmApplication extends Application {
 
     @Override
@@ -60,6 +64,16 @@ public final class AglpmApplication extends Application {
 
         final StackPane content = new StackPane();
         content.setStyle("-fx-background-color: #f1f5f9;");
+
+        final Label contentLabel = new Label("Dashboard");
+        content.getChildren().add(contentLabel);
+
+        tree.getSelectionModel().selectedItemProperty().addListener((observableValue, oldSelection, newSelection) -> {
+            if (newSelection == null)
+                return;
+
+            contentLabel.setText(newSelection.getValue());
+        });
 
         root.setLeft(sidebar);
         root.setCenter(content);
